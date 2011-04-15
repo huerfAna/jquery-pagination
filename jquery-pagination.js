@@ -2,7 +2,8 @@ $.fn.PageIt = function(options) {
     var lenght,
         page_pointer, // starts at 0
         item_count, // Counts the dataElement
-        items_a_page = 10, // Number of items on a page
+        items_a_page = 3, // Number of items on a page
+        item_pointer, 
         page_count, // Total of pages
         paginator_template = '<div id="paginator"><a href="#">{{ page_number }}</a></div>';
         defaults = {
@@ -15,7 +16,9 @@ $.fn.PageIt = function(options) {
     buildUI();
 
     function init() {
-       hideAllPageItems();
+       //setup our pagination template
+        $.template('page_template', '<a class="pagination_page ${$item.data}" href="#">${$item.data}</a>');
+
 
        page_pointer = 0;  
 
@@ -33,7 +36,13 @@ $.fn.PageIt = function(options) {
         $('#dataElement li').css({display: 'none'});
     }
 
-    function moveToPage() {
+    // The paging works by first hidding all page items then, 
+    // showing all of the items on the current page.
+    function moveToPage(i) {
+
+        item_pointer = i * items_a_page;
+
+        hideAllPageItems();
 
         var show_page_items = function(i_p) {
             var $el;
@@ -54,11 +63,18 @@ $.fn.PageIt = function(options) {
     function buildUI() {
         buildPaginator();
         /*buildSlider();*/
-        moveToPage();
+        moveToPage(1);
+
+        // Setup event handlers.
+        $('.pagination_page').click(function(e) {
+            moveToPage($(this).index());
+        });
     }
 
     function buildPaginator() {
-             
+        for(var i=1; i <= page_count; i++) {
+            $.tmpl("page_template", i).appendTo(opts.navElement);
+        }
     }
 
 
