@@ -18,7 +18,7 @@ $.fn.PageIt = function(options) {
 
     function init() {
        //setup our pagination template
-        $.template('page_template', '<a class="pagination_page ${$item.data}" href="#">${$item.data}</a>');
+        $.template('page_template', '<a class="pagination_page" href="#">${$item.data}</a>');
 
        if($(opts.dataElement)) {
             item_count = $(opts.dataElement).length;
