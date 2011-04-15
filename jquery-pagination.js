@@ -1,6 +1,6 @@
 $.fn.PageIt = function(options) {
     var page_pointer, // starts at 0, points to the current page.
-        item_count, // Number of items the paginate this counts the dataElement
+        item_count, // Number of items to paginate. This counts the opts.dataElement.
         items_a_page = 3, // Number of items on a page
         item_pointer, // starts at 0, points to the first item of the current page. 
         page_count, // Number of pages
