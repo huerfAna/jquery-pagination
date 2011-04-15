@@ -58,7 +58,7 @@ $.fn.PageIt = function(options) {
     }
 
     function buildPaginator() {
-         
+             
     }
 
 
