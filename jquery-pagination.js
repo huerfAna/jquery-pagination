@@ -1,14 +1,15 @@
 $.fn.PageIt = function(options) {
-    var lenght,
-        page_pointer, // starts at 0
-        item_count, // Counts the dataElement
+    var page_pointer, // starts at 0, points to the current page.
+        item_count, // Number of items the paginate this counts the dataElement
         items_a_page = 3, // Number of items on a page
-        item_pointer, 
-        page_count, // Total of pages
+        item_pointer, // starts at 0, points to the first item of the current page. 
+        page_count, // Number of pages
         paginator_template = '<div id="paginator"><a href="#">{{ page_number }}</a></div>';
         defaults = {
             dataElement: '#dataElement li',
             navElement: 'div',
+            page_pointer: 0,
+            start_page: 0
         },
         opts = $.extend(defaults, options);
 
@@ -18,10 +19,6 @@ $.fn.PageIt = function(options) {
     function init() {
        //setup our pagination template
         $.template('page_template', '<a class="pagination_page ${$item.data}" href="#">${$item.data}</a>');
-
-
-       page_pointer = 0;  
-
 
        if($(opts.dataElement)) {
             item_count = $(opts.dataElement).length;
@@ -62,8 +59,8 @@ $.fn.PageIt = function(options) {
 
     function buildUI() {
         buildPaginator();
-        /*buildSlider();*/
-        moveToPage(1);
+
+        moveToPage(opts.start_page);
 
         // Setup event handlers.
         $('.pagination_page').click(function(e) {
