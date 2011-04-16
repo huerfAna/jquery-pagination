@@ -1,7 +1,6 @@
 $.fn.PageIt = function(options) {
     var page_pointer, // starts at 0, points to the current page.
         item_count, // Number of items to paginate. This counts the opts.dataElement.
-        items_a_page = 3, // Number of items on a page
         item_pointer, // starts at 0, points to the first item of the current page. 
         page_count, // Number of pages
         paginator_template = '<div id="paginator"><a href="#">{{ page_number }}</a></div>';
@@ -9,23 +8,52 @@ $.fn.PageIt = function(options) {
             dataElement: '#dataElement li',
             navElement: 'div',
             page_pointer: 0,
-            start_page: 0
+            start_page: 0,
+            items_a_page: 5 // Number of items on a single page.
         },
         opts = $.extend(defaults, options);
 
     init();
     buildUI();
+    
+    return {
+        moveToPage: moveToPage,
+        buildUI: buildUI,
+        appendItem: appendItem,
+        prependItem: prependItem
+    };
+
+    function appendItem(text) {
+        $("#dataElement").append(text); 
+
+        // After the element has been added , a UI rebuild is needed.
+        buildUI();
+    }
+
+    function prependItem(text) {
+        $("#dataElement").prepend(text); 
+        buildUI();
+    }
+
 
     function init() {
        //setup our pagination template
         $.template('page_template', '<a class="pagination_page" href="#">${$item.data}</a>');
 
+       initValues();
+
+
+    }
+
+    function initValues() {
+
        if($(opts.dataElement)) {
             item_count = $(opts.dataElement).length;
        }
 
-       page_count = Math.ceil(item_count / items_a_page); 
+       page_count = Math.ceil(item_count / opts.items_a_page); 
        item_pointer = page_pointer * page_count;
+
     }
     
     // Hide all items
@@ -37,7 +65,7 @@ $.fn.PageIt = function(options) {
     // showing all of the items on the current page.
     function moveToPage(i) {
 
-        item_pointer = i * items_a_page;
+        item_pointer = i * opts.items_a_page;
 
         hideAllPageItems();
 
@@ -52,12 +80,14 @@ $.fn.PageIt = function(options) {
         };
 
 
-        for(var i=0; i < items_a_page; i++) { 
+        for(var i=0; i < opts.items_a_page; i++) { 
             item_pointer = show_page_items(item_pointer);
         }
     }
 
     function buildUI() {
+        initValues();
+
         buildPaginator();
 
         moveToPage(opts.start_page);
@@ -69,8 +99,21 @@ $.fn.PageIt = function(options) {
     }
 
     function buildPaginator() {
-        for(var i=1; i <= page_count; i++) {
-            $.tmpl("page_template", i).appendTo(opts.navElement);
+        // Check if there the pagination links have been constructed before
+        if(!$(opts.navElement).has('a').length) {
+
+            // Add the pagination link anchor elements to the opts.navElement
+            for(var i=1; i <= page_count; i++) {
+                $.tmpl("page_template", i).appendTo(opts.navElement);
+            }
+
+        } else {
+            // remove the links and rebuild the pagination menu 
+            $(opts.navElement).empty();
+
+            for(var i=1; i <= page_count; i++) {
+                $.tmpl("page_template", i).appendTo(opts.navElement);
+            }
         }
     }
 

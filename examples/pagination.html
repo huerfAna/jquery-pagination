@@ -41,7 +41,16 @@
     <script type="text/javascript" src="../jquery.tmpl.min.js"></script>
     <script type="text/javascript" src="../jquery-pagination.js"></script>
     <script type="text/javascript">
-        $("#paginator").PageIt(); 
+        /* Create the pagination object.
+         * This creates the UI 
+         */
+
+        var paginator = $.fn.PageIt({'items_a_page' : 4}); 
+
+        /* After the UI has been created you can still dynamically add items to be paginated.
+         * The appendItem and prependItem functions add the given param to the page and rebuilds the UI for you.
+         */
+        paginator.prependItem("<li>test</li>");
     </script>
 </body>
 </html>
