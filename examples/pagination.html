@@ -45,7 +45,7 @@
          * This creates the UI 
          */
 
-        var paginator = $('#AnimalData').PageIt({
+        var paginator = $('#AnimalData').Paginate({
                 'widget_type': 'paginator',
                 'items_a_page' : 7,
                 'data_element': 'li'
@@ -54,7 +54,7 @@
         /* After the UI has been created you can still dynamically add items to be paginated.
          * The appendItem and prependItem functions add the given param to the page and rebuilds the UI for you.
          */
-        paginator.prependItem("<li>test</li>");
+        paginator.prependItem("<li>Thomas</li>");
     </script>
 </body>
 </html>
