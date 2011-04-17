@@ -2,10 +2,13 @@
 
 Simple, flexible, extendable jquery plugin that handles pagination.
 
+##Dependencies
+jquery-pagination uses jquery-tmpl to render the pagination navigation links.
 
 ##Usage
 
     $('#DataElement').Paginate();
+
 
 ### Options
     {
