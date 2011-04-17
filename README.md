@@ -9,7 +9,7 @@ Simple, flexible, extendable jquery plugin that handles pagination.
 
 ### Options
     {
-        data_element: '', //TODO,
+        data_element: '', // Holds element containing each seperate piece of data to be paginated.
         navElement: 'div',
         pag_nav_el : '<a class="pagination_page" href="#">${$item.data}</a>',
         page_pointer: 0,
