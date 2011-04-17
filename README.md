@@ -1,17 +1,11 @@
-jquery-pagination
-=================
+#jquery-pagination
+
+Simple, flexible, extendable jquery plugin that handles pagination.
 
 
-This is a :
-* Simple
-* Flexible
-* Extendable
+##Usage
 
-jquery plugin that handles pagination for you.
-
-
-Simple
-------
+    $('#DataElement').Paginate();
 
 
 

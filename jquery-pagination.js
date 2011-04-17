@@ -1,5 +1,5 @@
 (function( $ ) {
-    $.fn.PageIt = function(options) {
+    $.fn.Paginate = function(options) {
         var page_pointer, // starts at 0, points to the current page.
             item_count, // Number of items to paginate. This counts the opts.data_element.
             item_pointer, // starts at 0, points to the first item of the current page. 
