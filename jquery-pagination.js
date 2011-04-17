@@ -7,7 +7,7 @@
             self = $(this), // refers to the data container
             defaults = {
                 data_element: '', //TODO,
-                navElement: 'div',
+                pag_element: 'div',
                 pag_nav_el : '<a class="pagination_page" href="#">${$item.data}</a>',
                 page_pointer: 0,
                 start_page: 0,
@@ -103,20 +103,20 @@
 
         function buildPaginator() {
             // Check if there the pagination links have been constructed before
-            if(!$(opts.navElement).has('a').length) {
+            if(!$(opts.pag_element).has('a').length) {
 
                 
-                // Add the pagination link anchor elements to the opts.navElement
+                // Add the pagination link anchor elements to the opts.pag_element
                 for(var i=1; i <= page_count; i++) {
-                    $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.navElement);
+                    $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
                 }
 
             } else {
                 // remove the links and rebuild the pagination menu 
-                $(opts.navElement).empty();
+                $(opts.pag_element).empty();
 
                 for(var i=1; i <= page_count; i++) {
-                    $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.navElement);
+                    $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
                 }
             }
         }
