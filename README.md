@@ -12,8 +12,6 @@ This element contains all elements to be paginated.
 For example:
     `<ul>
         <li>Bike</li>
-        <li>Car</li>
-        <li>Plain</li>
     </ul>`
 
     $('#DataElement').Paginate();
