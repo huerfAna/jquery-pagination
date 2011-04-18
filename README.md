@@ -10,9 +10,11 @@ jquery-pagination uses jquery-tmpl to render the pagination navigation links.
 ### Define the data element
 This element contains all elements to be paginated. 
 For example:
+    #example
+    
     <ul>
     <li>Bike</li>
-    </ul>`
+    </ul>
 
     $('#DataElement').Paginate();
 
