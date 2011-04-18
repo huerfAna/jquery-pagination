@@ -34,6 +34,12 @@ For example:
          * The example below is the default when the pag_nav_el option is not present. */
         pag_nav_el : '<a class="pagination_page" href="#">${$item.data}</a>', 
 
+        /* Number of navigation links at the start or end. 
+         * The values filled in below are the default.*/
+        pag_nav_start: 5,
+
+        pag_nav_end: 2,
+
         // First page to be shown.
         start_page: 0,
 

@@ -9,6 +9,8 @@
                 data_element: '', //TODO,
                 pag_element: 'div',
                 pag_nav_el : '<a class="pagination_page" href="#">${$item.data}</a>',
+                pag_nav_start: 5,
+                pag_nav_end: 2,
                 page_pointer: 0,
                 start_page: 0,
                 items_a_page: 5 // Number of items on a single page.
@@ -101,14 +103,30 @@
         }
 
         function buildPaginator() {
+            var i;
             // Check if there the pagination links have been constructed before
             if(!$(opts.pag_element).has('a').length) {
 
                 
                 // Add the pagination link anchor elements to the opts.pag_element
-                for(var i=1; i <= page_count; i++) {
+                /*for(var i=1; i <= page_count; i++) {*/
+                /*$.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);*/
+                /*}*/
+                i=1;
+                do {
                     $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
-                }
+                    i++;
+                } while(i <= page_count && opts.pag_nav_start >= i);
+
+                $.tmpl("&nbsp; ... &nbsp;").appendTo(opts.pag_element);
+
+                /*i=1;*/
+                i = page_count - opts.pag_nav_end;
+                i++;
+                do {
+                    $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
+                    i++;
+                } while(i <= page_count );
 
             } else {
                 // remove the links and rebuild the pagination menu 
