@@ -6,7 +6,7 @@
             page_count, // Number of pages
             self = $(this), // refers to the data container
             defaults = {
-                data_element: '', //TODO,
+                data_element: 'li', 
                 pag_element: 'div',
                 pag_nav_el : '<a class="pagination_page" href="#">${$item.data}</a>',
                 pag_nav_start: 5,

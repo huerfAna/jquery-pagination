@@ -26,12 +26,14 @@ For example:
          * In the above example the data_element would be li. */
         data_element: 'li',
 
-        /* This jquery selection refers to the element containing the pagination navigation links. */
+        /* This jquery selection refers to the element containing the pagination navigation links. 
+         * This options is mandatory. */
         pag_element: '#pagination_nav', 
 
         /* Each individual link to a page can be rendered using a jquery template.
          * This options holds the template to be rendered for each individual pagination link. 
-         * The example below is the default when the pag_nav_el option is not present. */
+         * The example below is the default when the pag_nav_el option is not present.
+         * Each page link will be appended to element the pag_element refers to. */
         pag_nav_el : '<a class="pagination_page" href="#">${$item.data}</a>', 
 
         /* Number of navigation links at the start or end. 
