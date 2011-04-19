@@ -129,6 +129,8 @@
                 _buildPaginator();
             } else {
                 // remove the links and rebuild the pagination menu 
+                $(opts.pag_element).empty();
+
                 _buildPaginator();
             }
         }
