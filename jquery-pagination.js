@@ -108,20 +108,32 @@
         function buildPaginator() {
             var i,
                 _buildPaginator = function() {
-                    i=1;
-                    do {
-                        $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
-                        i++;
-                    } while(i <= page_count && opts.pag_nav_start >= i);
+                    if(page_count > opts.pag_nav_start + opts.pag_nav_end) {
 
-                    $.tmpl("&nbsp; ... &nbsp;").appendTo(opts.pag_element);
+                        i=1;
+                        do {
+                            $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
+                            i++;
+                        } while(i <= page_count && opts.pag_nav_start >= i);
 
-                    i = page_count - opts.pag_nav_end;
-                    i++;
-                    do {
-                        $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
+                        $.tmpl("&nbsp; ... &nbsp;").appendTo(opts.pag_element);
+
+                        i = page_count - opts.pag_nav_end;
                         i++;
-                    } while(i <= page_count );
+                        do {
+                            $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
+                            i++;
+                        } while(i <= page_count );
+
+                    } else {
+
+                        i=1;
+                        do {
+                            $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
+                            i++;
+                        } while(i <= page_count );
+                         
+                    }
                 };
 
             // Check if there the pagination links have been constructed before
