@@ -1,6 +1,6 @@
 #jquery-pagination
 
-Simple, flexible, extendable jquery plugin that handles pagination.
+Simple and flexible jquery plugin that handles pagination.
 
 ##Dependencies
 jquery-pagination uses jquery-tmpl to render the pagination navigation links.
@@ -53,6 +53,13 @@ For example:
         items_a_page: 5 
     }
     
+
+### Adding items on the fly
+It's possible to append or prepend items after the paginate object has been created.
+
+    var paginate = $('#DataElement').Paginate(); 
+
+    paginate.appendItem("Test");
 
 
 
