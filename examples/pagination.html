@@ -3,30 +3,57 @@
 <head>
     <meta charset="UTF-8" />
     <title>Pagination Example</title>
+    <style type="text/css">
+        #Paginator a {
+            padding: 0px 5px; 
+        } 
+    </style>
 </head>
 <body>
     <ul id="AnimalData">
-        <li>Little Birds</li> 
-        <li>Strong Jelly Fish</li> 
-        <li>Little Birds</li> 
-        <li>Strong Jelly Fish</li> 
-        <li>Little Birds</li> 
-        <li>Strong Jelly Fish</li> 
-        <li>Little Birds</li> 
-        <li>Strong Jelly Fish</li> 
-        <li>Little Birds</li> 
-        <li>Strong Jelly Fish</li> 
-        <li>Little Birds</li> 
-        <li>Strong Jelly Fish</li> 
-        <li>Little Birds</li> 
-        <li>Strong Jelly Fish</li> 
-        <li>Little Birds</li> 
-        <li>Strong Jelly Fish</li> 
-        <li>Little Birds</li> 
-        <li>lStrong Jelly Fish</li> 
-    </ul> 
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+    </ul>
 
-    <div id="paginator"></div>
+    <div id="Paginator"></div>
+    <ul id="SlideShow"/>
+
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="../jquery.tmpl.min.js"></script>
@@ -38,18 +65,18 @@
 
         var paginator = $('#AnimalData').Paginate({
                 'widget_type': 'paginator',
-                'items_a_page' : 2,
+                'items_a_page' : 3,
                 'pag_nav_start': 4,
                 'pag_nav_end': 2,
+                'pag_element': '#Paginator',
                 'start_page': 0, 
-                'data_element': 'li'
 
         }); 
+
 
         /* After the UI has been created you can still dynamically add items to be paginated.
          * The appendItem and prependItem functions add the given param to the page and rebuilds the UI for you.
          */
-        <!--paginator.prependItem("<li>Thomas</li>");-->
     </script>
 </body>
 </html>

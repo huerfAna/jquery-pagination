@@ -7,7 +7,7 @@
             self = $(this), // refers to the data container
             defaults = {
                 data_element: 'li', 
-                pag_element: 'div',
+                pag_element: null,
                 pag_nav_el : '<a class="pagination_page" href="#">${$item.data}</a>',
                 pag_nav_start: 5,
                 pag_nav_end: 2,
@@ -91,7 +91,9 @@
         function buildUI() {
             initValues();
 
-            buildPaginator();
+            if(opts.pag_element) {
+                buildPaginator();
+            }
 
             
             moveToPage(opts.start_page);
@@ -104,38 +106,30 @@
         }
 
         function buildPaginator() {
-            var i;
+            var i,
+                _buildPaginator = function() {
+                    i=1;
+                    do {
+                        $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
+                        i++;
+                    } while(i <= page_count && opts.pag_nav_start >= i);
+
+                    $.tmpl("&nbsp; ... &nbsp;").appendTo(opts.pag_element);
+
+                    i = page_count - opts.pag_nav_end;
+                    i++;
+                    do {
+                        $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
+                        i++;
+                    } while(i <= page_count );
+                };
+
             // Check if there the pagination links have been constructed before
             if(!$(opts.pag_element).has('a').length) {
-
-                
-                // Add the pagination link anchor elements to the opts.pag_element
-                /*for(var i=1; i <= page_count; i++) {*/
-                /*$.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);*/
-                /*}*/
-                i=1;
-                do {
-                    $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
-                    i++;
-                } while(i <= page_count && opts.pag_nav_start >= i);
-
-                $.tmpl("&nbsp; ... &nbsp;").appendTo(opts.pag_element);
-
-                /*i=1;*/
-                i = page_count - opts.pag_nav_end;
-                i++;
-                do {
-                    $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
-                    i++;
-                } while(i <= page_count );
-
+                _buildPaginator();
             } else {
                 // remove the links and rebuild the pagination menu 
-                $(opts.pag_element).empty();
-
-                for(var i=1; i <= page_count; i++) {
-                    $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
-                }
+                _buildPaginator();
             }
         }
 
