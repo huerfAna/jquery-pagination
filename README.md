@@ -15,7 +15,11 @@ For example:
     <li>Bike</li>
     </ul>
 
+### Define the pagiantion links wrapper
+
     <div id="pagination_nav"/>
+
+### Finally, pagiante!
 
     $('#DataElement').Paginate();
 
