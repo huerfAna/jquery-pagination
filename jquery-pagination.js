@@ -28,14 +28,14 @@
         };
 
         function appendItem(text) {
-            self.append(text); 
+            self.append('<' + opts.data_element + '>'  + text + '</' + opts.data_element + '>'); 
 
             // After the element has been added , a UI rebuild is needed.
             buildUI();
         }
 
         function prependItem(text) {
-            self.prepend(text); 
+            self.prepend('<' + opts.data_element + '>'  + text + '</' + opts.data_element + '>'); 
             buildUI();
         }
 
