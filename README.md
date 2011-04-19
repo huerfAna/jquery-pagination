@@ -40,7 +40,7 @@ For example:
 
         pag_nav_end: 2,
 
-        // First page to be shown.
+        // First page to be shown. The pages are zero-based.
         start_page: 0,
 
         // Number of items on a single page.

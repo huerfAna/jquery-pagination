@@ -68,7 +68,6 @@
         // The paging works by first hidding all page items then, 
         // showing all of the items on the current page.
         function moveToPage(i) {
-
             item_pointer = i * opts.items_a_page;
 
             hideAllPageItems();
@@ -94,11 +93,13 @@
 
             buildPaginator();
 
+            
             moveToPage(opts.start_page);
 
             // Setup event handlers.
             $('.pagination_page').click(function(e) {
-                moveToPage($(this).index());
+                var page = parseInt(e.currentTarget.innerHTML);
+                moveToPage(--page);
             });
         }
 

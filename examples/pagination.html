@@ -6,33 +6,24 @@
 </head>
 <body>
     <ul id="AnimalData">
-        <li>Wild Animals</li> 
-        <li>Wild Animals</li> 
-        <li>Wild Animals</li> 
-        <li>Wild Animals</li> 
-        <li>Wild Animals</li> 
         <li>Little Birds</li> 
         <li>Strong Jelly Fish</li> 
         <li>Little Birds</li> 
         <li>Strong Jelly Fish</li> 
-        <li>Strong Jelly Fish</li> 
-        <li>Wild Animals</li> 
         <li>Little Birds</li> 
         <li>Strong Jelly Fish</li> 
         <li>Little Birds</li> 
         <li>Strong Jelly Fish</li> 
-        <li>Strong Jelly Fish</li> 
-        <li>Wild Animals</li> 
         <li>Little Birds</li> 
         <li>Strong Jelly Fish</li> 
         <li>Little Birds</li> 
         <li>Strong Jelly Fish</li> 
-        <li>Strong Jelly Fish</li> 
-        <li>Wild Animals</li> 
         <li>Little Birds</li> 
         <li>Strong Jelly Fish</li> 
         <li>Little Birds</li> 
         <li>Strong Jelly Fish</li> 
+        <li>Little Birds</li> 
+        <li>lStrong Jelly Fish</li> 
     </ul> 
 
     <div id="paginator"></div>
@@ -48,8 +39,9 @@
         var paginator = $('#AnimalData').Paginate({
                 'widget_type': 'paginator',
                 'items_a_page' : 2,
-                'pag_nav_start': 2,
+                'pag_nav_start': 4,
                 'pag_nav_end': 2,
+                'start_page': 0, 
                 'data_element': 'li'
 
         }); 
