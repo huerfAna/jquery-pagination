@@ -1,19 +1,19 @@
 (function( $ ) {
     $.fn.Paginate = function(options) {
-        var page_pointer, // starts at 0, points to the current page.
-            item_count, // Number of items to paginate. This counts the opts.data_element.
+        var page_pointer = 0, // starts at 0, points to the current page.
             item_pointer, // starts at 0, points to the first item of the current page. 
             page_count, // Number of pages
             self = $(this), // refers to the data container
+
             defaults = {
                 data_element: 'li', 
-                pag_element: null,
+                nav_element: null,
                 pag_nav_el : '<a class="pagination_page" href="#">${$item.data}</a>',
-                pag_nav_start: 5,
-                pag_nav_end: 2,
-                page_pointer: 0,
                 start_page: 0,
-                items_a_page: 5 // Number of items on a single page.
+                nav_links: 5,
+                nav_current_pos: 3,
+                items_a_page: 5, // Number of items on a single page.
+                fade_speed: null, // Represents the speed at wich the elements are shown, the value is passed to the fadeIn Jquery function.
             },
             opts = $.extend(defaults, options);
 
@@ -34,6 +34,7 @@
             buildUI();
         }
 
+        //TODO: hide the last item 
         function prependItem(text) {
             self.prepend('<' + opts.data_element + '>'  + text + '</' + opts.data_element + '>'); 
             buildUI();
@@ -51,6 +52,8 @@
 
         function initValues() {
 
+           var item_count; // Number of items to paginate. This counts the opts.data_element.
+
            if(self.children(opts.data_element)) {
                 item_count = self.children(opts.data_element).length;
            }
@@ -61,6 +64,7 @@
         }
         
         // Hide all items
+        // TODO: this causes some overhead , since not all the items are visible
         function hideAllPageItems() {
             self.children(opts.data_element).css({display: 'none'});
         }
@@ -72,12 +76,19 @@
 
             hideAllPageItems();
 
+            page_pointer = i;
+
             var show_page_items = function(i_p) {
                 var $el;
                 i_p++;
-                $el = self.children(opts.data_element).filter('  li:nth-child(' + i_p + ')');
+                $el = self.children(opts.data_element).filter('li:nth-child(' + i_p + ')');
 
-                $el.css({display: 'block'});
+
+                if(opts.fade_speed) {
+                    $el.fadeIn(opts.fade_speed);
+                } else {
+                    $el.css({'display': 'block'}); 
+                }
 
                 return i_p;
             };
@@ -86,12 +97,26 @@
             for(var i=0; i < opts.items_a_page; i++) { 
                 item_pointer = show_page_items(item_pointer);
             }
+
+
+            // Rebuild the navigation
+            $(opts.nav_element).empty();
+            buildPaginator();
+            initEvents();
+
+        }
+
+        function initEvents() {
+            $('.pagination_page').click(function(e) {
+                var page = parseInt(e.currentTarget.innerHTML);
+                moveToPage(page-1);
+            });
         }
 
         function buildUI() {
             initValues();
 
-            if(opts.pag_element) {
+            if(opts.nav_element) {
                 buildPaginator();
             }
 
@@ -99,49 +124,61 @@
             moveToPage(opts.start_page);
 
             // Setup event handlers.
-            $('.pagination_page').click(function(e) {
-                var page = parseInt(e.currentTarget.innerHTML);
-                moveToPage(--page);
-            });
+            initEvents();
         }
 
         function buildPaginator() {
-            var i,
+            var i, 
+                y,
                 _buildPaginator = function() {
-                    if(page_count > opts.pag_nav_start + opts.pag_nav_end) {
+
+                    if(page_count > opts.nav_links && page_pointer < 3) {
+
+                        y=1;
 
                         i=1;
-                        do {
-                            $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
-                            i++;
-                        } while(i <= page_count && opts.pag_nav_start >= i);
 
-                        $.tmpl("&nbsp; ... &nbsp;").appendTo(opts.pag_element);
-
-                        i = page_count - opts.pag_nav_end;
-                        i++;
                         do {
-                            $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
+                            compiled_tmpl = $.tmpl("pag_nav_wrapper_tmpl", i);
+                            (i == page_pointer+1) && compiled_tmpl.addClass("current");
+                            compiled_tmpl.appendTo(opts.nav_element);
                             i++;
-                        } while(i <= page_count );
+                            y++;
+                        } while(i <= page_count && y <= opts.nav_links);
+
+
 
                     } else {
 
-                        i=1;
+                        y=1;
+
+                        if(page_pointer > (page_count - opts.nav_current_pos)) {
+                            if(page_count - page_pointer < opts.nav_links) {
+                                i=page_count + 1- opts.nav_links;
+                            } else {
+                                i=page_pointer+1-opts.nav_current_pos;
+                            }
+                        } else {
+                            i=page_pointer-opts.nav_current_pos+1;
+                        }
+
                         do {
-                            $.tmpl("pag_nav_wrapper_tmpl", i).appendTo(opts.pag_element);
+                            compiled_tmpl = $.tmpl("pag_nav_wrapper_tmpl", i);
+                            (i == page_pointer+1) && compiled_tmpl.addClass("current");
+                            compiled_tmpl.appendTo(opts.nav_element);
                             i++;
-                        } while(i <= page_count );
+                            y++;
+                        } while(i <= page_count && y <= opts.nav_links );
                          
                     }
                 };
 
-            // Check if there the pagination links have been constructed before
-            if(!$(opts.pag_element).has('a').length) {
+            // Check if the pagination links have been constructed before
+            if(!$(opts.nav_element).has('a').length) {
                 _buildPaginator();
             } else {
                 // remove the links and rebuild the pagination menu 
-                $(opts.pag_element).empty();
+                $(opts.nav_element).empty();
 
                 _buildPaginator();
             }
