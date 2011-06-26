@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Pagination Example</title>
-    <style type="text/css">
-        #Paginator a {
-            padding: 0px 5px; 
-        } 
-    </style>
+    <link href="screen.css" rel="stylesheet" />
 </head>
 <body>
     <ul id="AnimalData">
@@ -19,6 +15,46 @@
         <li>Some Data</li>
         <li>Some Data</li>
         <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>Some Data</li>
+        <li>sdfsdfSome Data</li>
         <li>Some Data</li>
         <li>Some Data</li>
         <li>Some Data</li>
@@ -38,13 +74,10 @@
          */
 
         var paginator = $('#AnimalData').Paginate({
-                'widget_type': 'paginator',
-                'items_a_page' : 2,
-                'pag_nav_start': 1,
-                'pag_nav_end': 2,
-                'pag_element': '#Paginator',
-                'start_page': 0, 
-
+                'items_a_page' : 4,
+                'nav_links' : 6,
+                'nav_element': '#Paginator',
+                'fade_speed': 'fast' 
         }); 
 
 
@@ -52,8 +85,8 @@
          * The appendItem and prependItem functions add the given param to the page and rebuilds the UI for you.
          */
 
-        paginator.appendItem("Append example");
-        paginator.prependItem("Prepend example");
+        <!--paginator.appendItem("Append example");-->
+        <!--paginator.prependItem("Prepend example");-->
     </script>
 </body>
 </html>
