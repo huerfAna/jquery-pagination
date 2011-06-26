@@ -12,7 +12,7 @@ This element contains all elements to be paginated.
 For example:
 
     <ul id="DataElement">
-    <li>Bike</li>
+        <li>Bike</li>
     </ul>
 
 ### Define the pagiantion links wrapper
@@ -30,26 +30,16 @@ For example:
          * In the above example the data_element would be li. */
         data_element: 'li',
 
-        /* This jquery selection refers to the element containing the pagination navigation links. 
-         * This options is mandatory. */
-        pag_element: '#pagination_nav', 
-
         /* Each individual link to a page can be rendered using a jquery template.
          * This options holds the template to be rendered for each individual pagination link. 
          * The example below is the default when the pag_nav_el option is not present.
          * Each page link will be appended to element the pag_element refers to. */
-        pag_nav_el : '<a class="pagination_page" href="#">${$item.data}</a>', 
+        nav_link : '<a class="pagination_page" href="#">${$item.data}</a>', 
 
-        /* Number of navigation links at the start or end. 
-         * The values filled in below are the default.*/
-        pag_nav_start: 5,
-
-        pag_nav_end: 2,
-
-        // First page to be shown. The pages are zero-based.
+        // First page to be shown. The pages are zero-based. The default is 0.
         start_page: 0,
 
-        // Number of items on a single page.
+        // Number of items on a single page. Default is 5.
         items_a_page: 5 
     }
     
