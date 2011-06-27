@@ -26,6 +26,9 @@ For example:
 
 ### Options
     {
+        // Number of navigation links 
+        nav_link_count: 5,
+
         /* Element containing each seperate piece of data to be paginated.
          * In the above example the data_element would be li. */
         data_element: 'li',
@@ -34,7 +37,8 @@ For example:
          * This options holds the template to be rendered for each individual pagination link. 
          * The example below is the default when the pag_nav_el option is not present.
          * Each page link will be appended to element the pag_element refers to. */
-        nav_link_count : '<a class="pagination_page" href="#">${$item.data}</a>', 
+        nav_link: '<a class="pagination_page" href="#">${$item.data}</a>', 
+
 
         // First page to be shown. The pages are zero-based. The default is 0.
         start_page: 0,
