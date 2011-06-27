@@ -25,8 +25,27 @@
             moveToPage: moveToPage,
             buildUI: buildUI,
             appendItem: appendItem,
-            prependItem: prependItem
+            prependItem: prependItem,
+            nextPage: nextPage,
+            prevPage: prevPage
         };
+
+        function nextPage() {
+            if(page_pointer+1 < page_count) {
+                moveToPage(page_pointer + 1) 
+                return true;
+            }
+            return false; 
+        }
+
+        function prevPage() {
+            if(page_pointer+1 > 1) {
+                moveToPage(page_pointer - 1) 
+                return true;
+            }
+            return false; 
+        }
+
 
         function appendItem(text) {
             self.append('<' + opts.data_element + '>'  + text + '</' + opts.data_element + '>'); 
