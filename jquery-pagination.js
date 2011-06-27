@@ -8,9 +8,10 @@
             defaults = {
                 data_element: 'li', 
                 nav_element: null,
-                pag_nav_el : '<a class="pagination_page" href="#">${$item.data}</a>',
+                nav_link : '<a class="pagination_page" href="#">${$item.data}</a>',
+                //TODO: debug if this is correctly working
                 start_page: 0,
-                nav_links: 5,
+                nav_link_count: 5,
                 nav_current_pos: 3,
                 items_a_page: 5, // Number of items on a single page.
                 fade_speed: null, // Represents the speed at wich the elements are shown, the value is passed to the fadeIn Jquery function.
@@ -43,7 +44,7 @@
 
         function init() {
            //setup our pagination template
-            $.template('pag_nav_wrapper_tmpl', opts.pag_nav_el);
+            $.template('pag_nav_wrapper_tmpl', opts.nav_link);
 
            initValues();
 
@@ -132,7 +133,7 @@
                 y,
                 _buildPaginator = function() {
 
-                    if(page_count > opts.nav_links && page_pointer < 3) {
+                    if(page_count > opts.nav_link_count && page_pointer < opts.nav_current_pos) {
 
                         y=1;
 
@@ -144,7 +145,7 @@
                             compiled_tmpl.appendTo(opts.nav_element);
                             i++;
                             y++;
-                        } while(i <= page_count && y <= opts.nav_links);
+                        } while(i <= page_count && y <= opts.nav_link_count);
 
 
 
@@ -153,8 +154,8 @@
                         y=1;
 
                         if(page_pointer > (page_count - opts.nav_current_pos)) {
-                            if(page_count - page_pointer < opts.nav_links) {
-                                i=page_count + 1- opts.nav_links;
+                            if(page_count - page_pointer < opts.nav_link_count) {
+                                i=page_count + 1- opts.nav_link_count;
                             } else {
                                 i=page_pointer+1-opts.nav_current_pos;
                             }
@@ -168,7 +169,7 @@
                             compiled_tmpl.appendTo(opts.nav_element);
                             i++;
                             y++;
-                        } while(i <= page_count && y <= opts.nav_links );
+                        } while(i <= page_count && y <= opts.nav_link_count );
                          
                     }
                 };

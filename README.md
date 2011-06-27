@@ -34,7 +34,7 @@ For example:
          * This options holds the template to be rendered for each individual pagination link. 
          * The example below is the default when the pag_nav_el option is not present.
          * Each page link will be appended to element the pag_element refers to. */
-        nav_link : '<a class="pagination_page" href="#">${$item.data}</a>', 
+        av_link_count : '<a class="pagination_page" href="#">${$item.data}</a>', 
 
         // First page to be shown. The pages are zero-based. The default is 0.
         start_page: 0,
