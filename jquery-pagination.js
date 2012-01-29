@@ -102,21 +102,19 @@
                 var $el;
                 i_p++;
                 $el = self.children(opts.data_element).filter('li:nth-child(' + i_p + ')');
+                
 
-
-                if(opts.fade_speed) {
-                    $el.fadeIn(opts.fade_speed);
-                } else {
-                    $el.css({'display': 'block'}); 
-                }
-
-                return i_p;
+                var i=0;
+                (function graduallyShowItems(item){
+                    item.slideDown(300, function() {
+                        i < opts.items_a_page && graduallyShowItems($(this).next('li'));
+                        i++;
+                    });
+                })($el);
             };
 
 
-            for(var i=0; i < opts.items_a_page; i++) { 
-                item_pointer = show_page_items(item_pointer);
-            }
+            show_page_items(item_pointer);
 
 
             // Rebuild the navigation
