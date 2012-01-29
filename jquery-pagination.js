@@ -4,6 +4,7 @@
             item_pointer, // starts at 0, points to the first item of the current page. 
             page_count, // Number of pages
             self = $(this), // refers to the data container
+            init = True, //Sad work around to find out if this is the first time the list should be displayed (read animated)
 
             defaults = {
                 data_element: 'li', 
@@ -125,7 +126,9 @@
         }
 
         function initEvents() {
-            $('.pagination_page').click(function(e) {
+            $('.pagination_page').click(function(event) {
+                event.preventDefautl();
+
                 var page = parseInt(e.currentTarget.innerHTML);
                 moveToPage(page-1);
             });
