@@ -126,7 +126,7 @@
 
         function initEvents() {
             $('.pagination_page').click(function(event) {
-                event.preventDefautl();
+                event.preventDefault();
 
                 var page = parseInt(e.currentTarget.innerHTML);
                 moveToPage(page-1);
