@@ -9,7 +9,6 @@
                 data_element: 'li', 
                 nav_element: null,
                 nav_link : '<a class="pagination_page" href="#">${$item.data}</a>',
-                //TODO: debug if this is correctly working
                 start_page: 0,
                 nav_link_count: 5,
                 nav_current_pos: 3,
@@ -160,7 +159,10 @@
 
                         do {
                             compiled_tmpl = $.tmpl("pag_nav_wrapper_tmpl", i);
-                            (i == page_pointer+1) && compiled_tmpl.addClass("current");
+                            if(i == page_pointer+1) { 
+                                compiled_tmpl.addClass("current");
+                                opts.current_class && compiled_tmpl.addClass(opts.current_class);
+                            }
                             compiled_tmpl.appendTo(opts.nav_element);
                             i++;
                             y++;
@@ -184,7 +186,10 @@
 
                         do {
                             compiled_tmpl = $.tmpl("pag_nav_wrapper_tmpl", i);
-                            (i == page_pointer+1) && compiled_tmpl.addClass("current");
+                            if(i == page_pointer+1) { 
+                                compiled_tmpl.addClass("current");
+                                opts.current_class && compiled_tmpl.addClass(opts.current_class);
+                            }
                             compiled_tmpl.appendTo(opts.nav_element);
                             i++;
                             y++;
