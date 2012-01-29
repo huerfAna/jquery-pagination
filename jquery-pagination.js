@@ -128,7 +128,7 @@
             $('.pagination_page').click(function(event) {
                 event.preventDefault();
 
-                var page = parseInt(e.currentTarget.innerHTML);
+                var page = parseInt(event.currentTarget.innerHTML);
                 moveToPage(page-1);
             });
         }
