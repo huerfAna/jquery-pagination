@@ -49,7 +49,7 @@
         function removeItem(index) {
             $(opts.data_element)
                 .get(index)
-                    .slideOut()
+                    .slideDown()
                     .remove();
         }
 
