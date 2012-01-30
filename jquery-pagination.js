@@ -47,10 +47,9 @@
         }
 
         function removeItem(index) {
-            $($(opts.data_element)
-               .get(index))
-                    .hide()
-                    .remove();
+            $(self.children('li')[index])
+                .remove();
+            buildUI();
         }
 
         function appendItem(text) {
