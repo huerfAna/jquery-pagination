@@ -151,12 +151,10 @@
                 y,
                 _buildPaginator = function() {
 
-                    if(page_count > opts.nav_link_count && page_pointer < opts.nav_current_pos) {
+                    i=1;
+                    if(page_count < opts.nav_link_count ) {
 
                         y=1;
-
-                        i=1;
-
                         do {
                             compiled_tmpl = $.tmpl("pag_nav_wrapper_tmpl", i);
                             if(i == page_pointer+1) { 
@@ -174,14 +172,10 @@
 
                         y=1;
 
-                        if(page_pointer > (page_count - opts.nav_current_pos)) {
-                            if(page_count - page_pointer < opts.nav_link_count) {
-                                i=page_count + 1- opts.nav_link_count;
-                            } else {
-                                i=page_pointer+1-opts.nav_current_pos;
-                            }
+                        if(page_pointer < Math.ceil(opts.nav_link_count/2)) {
+                            i=1;
                         } else {
-                            i=page_pointer-opts.nav_current_pos+1;
+                            i=page_pointer-Math.ceil(opts.items_a_page / 2)+1;
                         }
 
                         do {
