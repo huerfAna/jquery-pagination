@@ -47,7 +47,7 @@
         }
 
         function removeItem(index) {
-            $(data_element)
+            $(opts.data_element)
                 .get(index)
                     .slideOut()
                     .remove();
