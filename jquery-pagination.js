@@ -47,7 +47,6 @@
         }
 
         function removeItem(index) {
-            console.log($(opts.data_element).get(index));
             $($(opts.data_element)
                 .get(index))
                     .slideDown()
