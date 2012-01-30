@@ -45,6 +45,12 @@
             return false; 
         }
 
+        function removeItem(index) {
+            $(data_element)
+                .get(index)
+                    .slideOut()
+                    .remove();
+        }
 
         function appendItem(text) {
             self.append('<' + opts.data_element + '>'  + text + '</' + opts.data_element + '>'); 
