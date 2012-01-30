@@ -24,6 +24,7 @@
             moveToPage: moveToPage,
             buildUI: buildUI,
             appendItem: appendItem,
+            removeItem: removeItem,
             prependItem: prependItem,
             nextPage: nextPage,
             prevPage: prevPage
