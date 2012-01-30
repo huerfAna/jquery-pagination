@@ -48,8 +48,8 @@
 
         function removeItem(index) {
             $($(opts.data_element)
-                .get(index))
-                    .slideDown()
+               .get(index))
+                    .hide()
                     .remove();
         }
 
