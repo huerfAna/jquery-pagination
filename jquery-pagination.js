@@ -112,7 +112,7 @@
                 var i=0;
                 (function graduallyShowItems(item){
                     item.slideDown(300, function() {
-                        i < opts.items_a_page && graduallyShowItems($(this).next('li'));
+                        i < opts.items_a_page-1 && graduallyShowItems($(this).next('li'));
                         i++;
                     });
                 })($el);
@@ -142,7 +142,7 @@
                 event.preventDefault();
 
                 var page = parseInt(event.currentTarget.innerHTML);
-                moveToPage(page);
+                moveToPage(page-1);
             });
         }
 
