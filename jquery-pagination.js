@@ -4,6 +4,7 @@
             item_pointer, // starts at 0, points to the first item of the current page. 
             page_count, // Number of pages
             self = $(this), // refers to the data container
+            firstRun = true, // used to check if this is the first time moveToPage was called, in other words when the list is initially displayed
 
             defaults = {
                 data_element: 'li', 
@@ -108,7 +109,6 @@
                 i_p++;
                 $el = self.children(opts.data_element).filter('li:nth-child(' + i_p + ')');
                 
-
                 var i=0;
                 (function graduallyShowItems(item){
                     item.slideDown(300, function() {
@@ -119,8 +119,16 @@
             };
 
 
-            show_page_items(item_pointer);
-
+            if(firstRun == true) {
+                var i=0;
+                for(;i<=opts.items_a_page; i++) {
+                    $el = self.children(opts.data_element).filter('li:nth-child(' + i + ')');
+                    $el.show();
+                }
+                firstRun = false;
+            } else {
+                show_page_items(item_pointer);
+            }
 
             // Rebuild the navigation
             $(opts.nav_element).empty();
@@ -134,7 +142,7 @@
                 event.preventDefault();
 
                 var page = parseInt(event.currentTarget.innerHTML);
-                moveToPage(page-1);
+                moveToPage(page);
             });
         }
 
